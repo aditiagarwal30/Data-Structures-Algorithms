@@ -1,4 +1,4 @@
 # Data-Structures-Algorithms
 
-Recursion
-Arrays
+1. Recursion
+2. Arrays
