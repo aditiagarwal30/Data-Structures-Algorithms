@@ -19,7 +19,7 @@ void Missing(struct Array arr)
 			h=arr.A[i];
     }
 
-    int *H=(int *)calloc(h,sizeof(int));
+    int *H=(int *)calloc(h+1,sizeof(int));
     for(int i=0;i<arr.length;i++)
     {
     	H[arr.A[i]]++ ;
