@@ -6,50 +6,38 @@ struct node
 {  
     int data;  
     struct node *next;   
-};  
-struct node *head, *head2;  
+}*head=NULL, *head2=NULL;  
 
-void insert(struct node *first)
+struct node * insert(struct node *l1)
 {
-    int n;
-    cout<<"no. of elements \n";
-    cin>>n;
-    while(n--)
+    struct node *tmp,*q;
+    int n,m,i;
+    printf("nodes number: ");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
     {
-        struct node *ptr,*temp;  
-        int item;     
-        ptr = (struct node*)malloc(sizeof(struct node));      
-        if(ptr == NULL)  
-        {  
-        printf("\nOVERFLOW");     
-        }  
-        else  
-        {  
-            printf("\nEnter value?\n");  
-            scanf("%d",&item);  
-            ptr->data = item;  
-            if(first == NULL)  
-            {  
-                ptr -> next = NULL;  
-                first = ptr;  
-                printf("\nNode inserted\n");  
-            }  
-            else  
-            {  
-                temp = first;  
-                while (temp -> next != NULL)  
-                {  
-                    temp = temp -> next;  
-                }  
-                temp->next = ptr;  
-                ptr->next = NULL;  
-                printf("\nNode inserted \n");  
-            }  
-            
-        }  
-        
+        printf("enter data: ");
+        scanf("%d",&m);
+        tmp=(struct node *)malloc(sizeof(struct node));
+        tmp->data=m;
+        tmp->next=NULL;
+        if(l1==NULL)
+        {
+            l1=tmp;
+        }
+        else
+        {
+            q=l1;
+            while(q->next!=NULL)
+                {
+                    q=q->next;
+                }
+            q->next=tmp;
+        }
     }
+    return l1;
 }
+
 
 
 void display(struct node* front)  
@@ -71,7 +59,7 @@ void display(struct node* front)
     }  
 }   
 
-void concatenate(struct node * first, struct node *second)
+struct node * concatenate(struct node * first, struct node *second)
 {
     struct node *p=first;
     while(p->next)
@@ -79,16 +67,16 @@ void concatenate(struct node * first, struct node *second)
         p=p->next;
     }
     p->next=second;
-    free(second);
+    return first;
 }
 
 int main()
 {
-    insert(head);
-    insert(head2);
+    head=insert(head);
+    head2=insert(head2);
     display(head);
     display(head2);
-    concatenate(head, head2);
+    head=concatenate(head, head2);
     display(head);
 }
            
