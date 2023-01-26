@@ -9,6 +9,6 @@
 7. Stack
 8. Queue
 9. Tree
-10. Graph
+10. Graphs
 11. Dynamic Programming
 12. Trie
