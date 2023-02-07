@@ -26,6 +26,13 @@ int main()
     cout << m["aditi"] << endl;
     cout << m.at("ayush") << endl;
     // cout << m["shruti"];
-    cout << m.at("shruti"); // no prev instance of the key
+    //   cout << m.at("shruti"); // no prev instance of the key
+
+    unordered_map<string, int>::iterator it = m.begin();
+    while (it != m.end())
+    {
+        cout << it->first << " " << it->second << endl;
+        it++;
+    }
     return 0;
 }
