@@ -22,5 +22,10 @@ int main()
     m["ayush"] = 1;
     m["ayush"] = 4;
 
+    // searching
+    cout << m["aditi"] << endl;
+    cout << m.at("ayush") << endl;
+    // cout << m["shruti"];
+    cout << m.at("shruti"); // no prev instance of the key
     return 0;
 }
