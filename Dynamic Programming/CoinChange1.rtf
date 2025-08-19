@@ -1,0 +1,167 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green255\blue255;\red0\green0\blue0;
+\red32\green108\blue135;\red101\green76\blue29;\red0\green0\blue109;\red157\green0\blue210;\red19\green118\blue70;
+\red15\green112\blue1;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c14902\c49804\c60000;\cssrgb\c47451\c36863\c14902;\cssrgb\c0\c6275\c50196;\cssrgb\c68627\c0\c85882;\cssrgb\c3529\c52549\c34510;
+\cssrgb\c0\c50196\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww23180\viewh13820\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs48 \cf0 Coin Change 1
+\fs26 \
+\
+\
+- express problem in terms of index ( I, target)\
+- do possible  stuff on those indices\
+- make base condition\
+\
+Recursion-\
+TC: Exponential\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 class\cf0 \strokec4  \cf5 \strokec5 Solution\cf0 \strokec4  \{\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb3     \cf2 \strokec2 int\cf0 \strokec4  \cf6 \strokec6 f\cf0 \strokec4 (\cf2 \strokec2 int\cf0 \strokec4  \cf7 \strokec7 i\cf0 \strokec4 , \cf2 \strokec2 int\cf0 \strokec4  \cf7 \strokec7 target\cf0 \strokec4 , \cf5 \strokec5 vector\cf0 \strokec4 <\cf2 \strokec2 int\cf0 \strokec4 >\cf2 \strokec2 &\cf0 \strokec4  \cf7 \strokec7 coins\cf0 \strokec4 )\{\cb1 \
+\cb3         \cf8 \strokec8 if\cf0 \strokec4 (i==\cf9 \strokec9 0\cf0 \strokec4 )\{\cb1 \
+\cb3             \cf8 \strokec8 if\cf0 \strokec4 (target%\cf7 \strokec7 coins\cf0 \strokec4 [i]==\cf9 \strokec9 0\cf0 \strokec4 ) \cf8 \strokec8 return\cf0 \strokec4  target/\cf7 \strokec7 coins\cf0 \strokec4 [i];\cb1 \
+\cb3             \cf8 \strokec8 else\cf0 \strokec4  \cf8 \strokec8 return\cf0 \strokec4  \cf9 \strokec9 1e9\cf0 \strokec4 ;\cb1 \
+\cb3         \}    \cb1 \
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  not_take= \cf6 \strokec6 f\cf0 \strokec4 (i-\cf9 \strokec9 1\cf0 \strokec4 , target, coins);\cb1 \
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  take= \cf9 \strokec9 1e9\cf0 \strokec4 ;\cb1 \
+\cb3         \cf8 \strokec8 if\cf0 \strokec4 (\cf7 \strokec7 coins\cf0 \strokec4 [i]<=target) take= \cf9 \strokec9 1\cf0 \strokec4 + \cf6 \strokec6 f\cf0 \strokec4 (i, target-\cf7 \strokec7 coins\cf0 \strokec4 [i], coins);\cb1 \
+\
+\cb3         \cf8 \strokec8 return\cf0 \strokec4  \cf6 \strokec6 min\cf0 \strokec4 (take,not_take);\cb1 \
+\cb3     \}\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 public:\cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb3     \cf2 \strokec2 int\cf0 \strokec4  \cf6 \strokec6 coinChange\cf0 \strokec4 (\cf5 \strokec5 vector\cf0 \strokec4 <\cf2 \strokec2 int\cf0 \strokec4 >\cf2 \strokec2 &\cf0 \strokec4  \cf7 \strokec7 coins\cf0 \strokec4 , \cf2 \strokec2 int\cf0 \strokec4  \cf7 \strokec7 amount\cf0 \strokec4 ) \{\cb1 \
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  n= \cf7 \strokec7 coins\cf0 \strokec4 .\cf6 \strokec6 size\cf0 \strokec4 ();\cb1 \
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  ans= \cf6 \strokec6 f\cf0 \strokec4 (n-\cf9 \strokec9 1\cf0 \strokec4 , amount, coins);\cb1 \
+\
+\cb3         \cf8 \strokec8 if\cf0 \strokec4 (ans>=\cf9 \strokec9 1e9\cf0 \strokec4 ) \cf8 \strokec8 return\cf0 \strokec4  -\cf9 \strokec9 1\cf0 \strokec4 ;\cb1 \
+\cb3         \cf8 \strokec8 return\cf0 \strokec4  ans;\cb1 \
+\cb3     \}\cb1 \
+\cb3 \};\cb1 \
+\
+ Memoization-\
+TC: O(n x t)\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 class\cf0 \strokec4  \cf5 \strokec5 Solution\cf0 \strokec4  \{\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb3     \cf2 \strokec2 int\cf0 \strokec4  \cf6 \strokec6 f\cf0 \strokec4 (\cf2 \strokec2 int\cf0 \strokec4  \cf7 \strokec7 i\cf0 \strokec4 , \cf2 \strokec2 int\cf0 \strokec4  \cf7 \strokec7 target\cf0 \strokec4 , \cf5 \strokec5 vector\cf0 \strokec4 <\cf2 \strokec2 int\cf0 \strokec4 >\cf2 \strokec2 &\cf0 \strokec4  \cf7 \strokec7 coins\cf0 \strokec4 , \cf5 \strokec5 vector\cf0 \strokec4 <\cf5 \strokec5 vector\cf0 \strokec4 <\cf2 \strokec2 int\cf0 \strokec4 >>\cf2 \strokec2 &\cf0 \strokec4  \cf7 \strokec7 dp\cf0 \strokec4 )\{\cb1 \
+\cb3         \cf8 \strokec8 if\cf0 \strokec4 (i==\cf9 \strokec9 0\cf0 \strokec4 )\{\cb1 \
+\cb3             \cf8 \strokec8 if\cf0 \strokec4 (target%\cf7 \strokec7 coins\cf0 \strokec4 [i]==\cf9 \strokec9 0\cf0 \strokec4 ) \cf8 \strokec8 return\cf0 \strokec4  \cf7 \strokec7 dp\cf0 \strokec4 [i][target]= target/\cf7 \strokec7 coins\cf0 \strokec4 [i];\cb1 \
+\cb3             \cf8 \strokec8 else\cf0 \strokec4  \cf8 \strokec8 return\cf0 \strokec4  \cf7 \strokec7 dp\cf0 \strokec4 [i][target]= \cf9 \strokec9 1e9\cf0 \strokec4 ;\cb1 \
+\cb3         \}    \cb1 \
+\
+\cb3         \cf8 \strokec8 if\cf0 \strokec4 (\cf7 \strokec7 dp\cf0 \strokec4 [i][target]!=-\cf9 \strokec9 1\cf0 \strokec4 ) \cf8 \strokec8 return\cf0 \strokec4  \cf7 \strokec7 dp\cf0 \strokec4 [i][target];\cb1 \
+\
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  not_take= \cf6 \strokec6 f\cf0 \strokec4 (i-\cf9 \strokec9 1\cf0 \strokec4 , target, coins, dp);\cb1 \
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  take= \cf9 \strokec9 1e9\cf0 \strokec4 ;\cb1 \
+\cb3         \cf8 \strokec8 if\cf0 \strokec4 (\cf7 \strokec7 coins\cf0 \strokec4 [i]<=target) take= \cf9 \strokec9 1\cf0 \strokec4 + \cf6 \strokec6 f\cf0 \strokec4 (i, target-\cf7 \strokec7 coins\cf0 \strokec4 [i], coins, dp);\cb1 \
+\
+\cb3         \cf8 \strokec8 return\cf0 \strokec4  \cf7 \strokec7 dp\cf0 \strokec4 [i][target]= \cf6 \strokec6 min\cf0 \strokec4 (take,not_take);\cb1 \
+\cb3     \}\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 public:\cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb3     \cf2 \strokec2 int\cf0 \strokec4  \cf6 \strokec6 coinChange\cf0 \strokec4 (\cf5 \strokec5 vector\cf0 \strokec4 <\cf2 \strokec2 int\cf0 \strokec4 >\cf2 \strokec2 &\cf0 \strokec4  \cf7 \strokec7 coins\cf0 \strokec4 , \cf2 \strokec2 int\cf0 \strokec4  \cf7 \strokec7 amount\cf0 \strokec4 ) \{\cb1 \
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  n= \cf7 \strokec7 coins\cf0 \strokec4 .\cf6 \strokec6 size\cf0 \strokec4 ();\cb1 \
+\cb3         vector<vector<\cf2 \strokec2 int\cf0 \strokec4 >> \cf6 \strokec6 dp\cf0 \strokec4 (n, \cf6 \strokec6 vector\cf0 \strokec4 <\cf2 \strokec2 int\cf0 \strokec4 >(amount+\cf9 \strokec9 1\cf0 \strokec4 , -\cf9 \strokec9 1\cf0 \strokec4 ));\cb1 \
+\
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  ans= \cf6 \strokec6 f\cf0 \strokec4 (n-\cf9 \strokec9 1\cf0 \strokec4 , amount, coins, dp);\cb1 \
+\
+\cb3         \cf8 \strokec8 if\cf0 \strokec4 (ans>=\cf9 \strokec9 1e9\cf0 \strokec4 ) \cf8 \strokec8 return\cf0 \strokec4  -\cf9 \strokec9 1\cf0 \strokec4 ;\cb1 \
+\cb3         \cf8 \strokec8 return\cf0 \strokec4  ans;\cb1 \
+\cb3     \}\cb1 \
+\cb3 \};\cb1 \
+\
+\
+Tabulation:\
+TC: O(n x t) with no aux space\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 class\cf0 \strokec4  \cf5 \strokec5 Solution\cf0 \strokec4  \{\cb1 \
+\cf2 \cb3 \strokec2 public:\cf0 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 int\cf0 \strokec4  \cf6 \strokec6 coinChange\cf0 \strokec4 (\cf5 \strokec5 vector\cf0 \strokec4 <\cf2 \strokec2 int\cf0 \strokec4 >\cf2 \strokec2 &\cf0 \strokec4  \cf7 \strokec7 coins\cf0 \strokec4 , \cf2 \strokec2 int\cf0 \strokec4  \cf7 \strokec7 amount\cf0 \strokec4 ) \{\cb1 \
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  n= \cf7 \strokec7 coins\cf0 \strokec4 .\cf6 \strokec6 size\cf0 \strokec4 ();\cb1 \
+\cb3         vector<vector<\cf2 \strokec2 int\cf0 \strokec4 >> \cf6 \strokec6 dp\cf0 \strokec4 (n, \cf6 \strokec6 vector\cf0 \strokec4 <\cf2 \strokec2 int\cf0 \strokec4 >(amount+\cf9 \strokec9 1\cf0 \strokec4 , \cf9 \strokec9 0\cf0 \strokec4 ));\cb1 \
+\
+\cf10 \cb3 \strokec10         //base condition\cf0 \cb1 \strokec4 \
+\cb3         \cf8 \strokec8 for\cf0 \strokec4 (\cf2 \strokec2 int\cf0 \strokec4  T=\cf9 \strokec9 0\cf0 \strokec4 ; T<=amount; T++)\{\cb1 \
+\cb3             \cf8 \strokec8 if\cf0 \strokec4 (T%\cf7 \strokec7 coins\cf0 \strokec4 [\cf9 \strokec9 0\cf0 \strokec4 ]==\cf9 \strokec9 0\cf0 \strokec4 ) \cf7 \strokec7 dp\cf0 \strokec4 [\cf9 \strokec9 0\cf0 \strokec4 ][T]= T/\cf7 \strokec7 coins\cf0 \strokec4 [\cf9 \strokec9 0\cf0 \strokec4 ];\cb1 \
+\cb3             \cf8 \strokec8 else\cf0 \strokec4  \cf7 \strokec7 dp\cf0 \strokec4 [\cf9 \strokec9 0\cf0 \strokec4 ][T]= \cf9 \strokec9 1e9\cf0 \strokec4 ;\cb1 \
+\cb3         \}\cb1 \
+\
+\cf10 \cb3 \strokec10         // converting recursion to loop based\cf0 \cb1 \strokec4 \
+\cb3         \cf8 \strokec8 for\cf0 \strokec4 (\cf2 \strokec2 int\cf0 \strokec4  i=\cf9 \strokec9 1\cf0 \strokec4 ; i<n; i++)\{\cb1 \
+\cb3             \cf8 \strokec8 for\cf0 \strokec4 (\cf2 \strokec2 int\cf0 \strokec4  t=\cf9 \strokec9 0\cf0 \strokec4 ; t<=amount; t++)\{\cb1 \
+\
+\cb3                 \cf2 \strokec2 int\cf0 \strokec4  not_take= \cf7 \strokec7 dp\cf0 \strokec4 [i-\cf9 \strokec9 1\cf0 \strokec4 ][t];\cb1 \
+\
+\cb3                 \cf2 \strokec2 int\cf0 \strokec4  take= \cf9 \strokec9 1e9\cf0 \strokec4 ;\cb1 \
+\cb3                 \cf8 \strokec8 if\cf0 \strokec4 (\cf7 \strokec7 coins\cf0 \strokec4 [i]<=t) take= \cf9 \strokec9 1\cf0 \strokec4 + \cf7 \strokec7 dp\cf0 \strokec4 [i][t-\cf7 \strokec7 coins\cf0 \strokec4 [i]];\cb1 \
+\
+\cb3                 \cf7 \strokec7 dp\cf0 \strokec4 [i][t]= \cf6 \strokec6 min\cf0 \strokec4 (take,not_take);\cb1 \
+\
+\cb3             \}\cb1 \
+\cb3         \}\cb1 \
+\
+\cf10 \cb3 \strokec10         //fetching answer\cf0 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  ans= \cf7 \strokec7 dp\cf0 \strokec4 [n-\cf9 \strokec9 1\cf0 \strokec4 ][amount];\cb1 \
+\
+\cb3         \cf8 \strokec8 if\cf0 \strokec4 (ans>=\cf9 \strokec9 1e9\cf0 \strokec4 ) \cf8 \strokec8 return\cf0 \strokec4  -\cf9 \strokec9 1\cf0 \strokec4 ;\cb1 \
+\cb3         \cf8 \strokec8 return\cf0 \strokec4  ans;\cb1 \
+\cb3     \}\cb1 \
+\cb3 \};\
+\
+Space optimized\
+TC: O(n x m) \
+SC: O(n + n)\
+\
+\cf2 \strokec2 class\cf0 \strokec4  \cf5 \strokec5 Solution\cf0 \strokec4  \{\cb1 \
+\cf2 \cb3 \strokec2 public:\cf0 \cb1 \strokec4 \
+\cb3     \cf2 \strokec2 int\cf0 \strokec4  \cf6 \strokec6 coinChange\cf0 \strokec4 (\cf5 \strokec5 vector\cf0 \strokec4 <\cf2 \strokec2 int\cf0 \strokec4 >\cf2 \strokec2 &\cf0 \strokec4  \cf7 \strokec7 coins\cf0 \strokec4 , \cf2 \strokec2 int\cf0 \strokec4  \cf7 \strokec7 amount\cf0 \strokec4 ) \{\cb1 \
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  n= \cf7 \strokec7 coins\cf0 \strokec4 .\cf6 \strokec6 size\cf0 \strokec4 ();\cb1 \
+\cb3         vector<\cf2 \strokec2 int\cf0 \strokec4 > \cf6 \strokec6 prev\cf0 \strokec4 (amount+\cf9 \strokec9 1\cf0 \strokec4 , \cf9 \strokec9 0\cf0 \strokec4 );\cb1 \
+\cb3         vector<\cf2 \strokec2 int\cf0 \strokec4 > \cf6 \strokec6 cur\cf0 \strokec4 (amount+\cf9 \strokec9 1\cf0 \strokec4 , \cf9 \strokec9 0\cf0 \strokec4 );\cb1 \
+\
+\cf10 \cb3 \strokec10         //base condition\cf0 \cb1 \strokec4 \
+\cb3         \cf8 \strokec8 for\cf0 \strokec4 (\cf2 \strokec2 int\cf0 \strokec4  T=\cf9 \strokec9 0\cf0 \strokec4 ; T<=amount; T++)\{\cb1 \
+\cb3             \cf8 \strokec8 if\cf0 \strokec4 (T%\cf7 \strokec7 coins\cf0 \strokec4 [\cf9 \strokec9 0\cf0 \strokec4 ]==\cf9 \strokec9 0\cf0 \strokec4 ) \cf7 \strokec7 prev\cf0 \strokec4 [T]= T/\cf7 \strokec7 coins\cf0 \strokec4 [\cf9 \strokec9 0\cf0 \strokec4 ];\cb1 \
+\cb3             \cf8 \strokec8 else\cf0 \strokec4  \cf7 \strokec7 prev\cf0 \strokec4 [T]= \cf9 \strokec9 1e9\cf0 \strokec4 ;\cb1 \
+\cb3         \}\cb1 \
+\
+\cf10 \cb3 \strokec10         // converting recursion to loop based\cf0 \cb1 \strokec4 \
+\cb3         \cf8 \strokec8 for\cf0 \strokec4 (\cf2 \strokec2 int\cf0 \strokec4  i=\cf9 \strokec9 1\cf0 \strokec4 ; i<n; i++)\{\cb1 \
+\cb3             \cf8 \strokec8 for\cf0 \strokec4 (\cf2 \strokec2 int\cf0 \strokec4  t=\cf9 \strokec9 0\cf0 \strokec4 ; t<=amount; t++)\{\cb1 \
+\
+\cb3                 \cf2 \strokec2 int\cf0 \strokec4  not_take= \cf7 \strokec7 prev\cf0 \strokec4 [t];\cb1 \
+\
+\cb3                 \cf2 \strokec2 int\cf0 \strokec4  take= \cf9 \strokec9 1e9\cf0 \strokec4 ;\cb1 \
+\cb3                 \cf8 \strokec8 if\cf0 \strokec4 (\cf7 \strokec7 coins\cf0 \strokec4 [i]<=t) take= \cf9 \strokec9 1\cf0 \strokec4 + \cf7 \strokec7 cur\cf0 \strokec4 [t-\cf7 \strokec7 coins\cf0 \strokec4 [i]];\cb1 \
+\
+\cb3                 \cf7 \strokec7 cur\cf0 \strokec4 [t]= \cf6 \strokec6 min\cf0 \strokec4 (take,not_take);\cb1 \
+\
+\cb3             \}\cb1 \
+\
+\cb3             prev= cur;\cb1 \
+\cb3         \}\cb1 \
+\
+\cf10 \cb3 \strokec10         //fetching answer\cf0 \cb1 \strokec4 \
+\cb3         \cf2 \strokec2 int\cf0 \strokec4  ans= \cf7 \strokec7 prev\cf0 \strokec4 [amount];\cb1 \
+\
+\cb3         \cf8 \strokec8 if\cf0 \strokec4 (ans>=\cf9 \strokec9 1e9\cf0 \strokec4 ) \cf8 \strokec8 return\cf0 \strokec4  -\cf9 \strokec9 1\cf0 \strokec4 ;\cb1 \
+\cb3         \cf8 \strokec8 return\cf0 \strokec4  ans;\cb1 \
+\cb3     \}\cb1 \
+\cb3 \};\cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+}
